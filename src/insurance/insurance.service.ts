@@ -34,7 +34,8 @@ export class InsuranceService {
       where: { insuranceId: id },
       relations: ['car'],
     });
-    if (!insurance) throw new NotFoundException(`Insurance with ID ${id} not found`);
+    if (!insurance)
+      throw new NotFoundException(`Insurance with ID ${id} not found`);
     return insurance;
   }
 
@@ -60,9 +61,11 @@ export class InsuranceService {
       // Validate dates
       const startDate = new Date(createInsuranceDto.startDate);
       const endDate = new Date(createInsuranceDto.endDate);
-      
+
       if (startDate >= endDate) {
-        throw new BadRequestException('Insurance start date must be before end date');
+        throw new BadRequestException(
+          'Insurance start date must be before end date',
+        );
       }
 
       const newInsurance = this.insuranceRepository.create({
@@ -83,7 +86,10 @@ export class InsuranceService {
   }
 
   // ✅ Update insurance
-  async update(id: number, updateInsuranceDto: UpdateInsuranceDto): Promise<Insurance> {
+  async update(
+    id: number,
+    updateInsuranceDto: UpdateInsuranceDto,
+  ): Promise<Insurance> {
     const insurance = await this.findOne(id);
     Object.assign(insurance, updateInsuranceDto);
     return this.insuranceRepository.save(insurance);
@@ -102,7 +108,8 @@ export class InsuranceService {
       where: { carId },
       relations: ['car'],
     });
-    if (!insurance) throw new NotFoundException(`No insurance found for car ID ${carId}`);
+    if (!insurance)
+      throw new NotFoundException(`No insurance found for car ID ${carId}`);
     return insurance;
   }
 }

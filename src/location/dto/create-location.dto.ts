@@ -10,6 +10,8 @@ export class CreateLocationDto {
   address: string;
 
   @IsString()
-  @Matches(/^[\+]?[1-9][\d]{0,15}$/, { message: 'Invalid contact number format' })
+  @Matches(/^[\+]?[1-9][\d]{0,15}$/, {
+    message: 'Invalid contact number format',
+  })
   contactNumber: string;
 }

@@ -33,7 +33,8 @@ export class PaymentService {
       where: { paymentId: id },
       relations: ['rental'],
     });
-    if (!payment) throw new NotFoundException(`Payment with ID ${id} not found`);
+    if (!payment)
+      throw new NotFoundException(`Payment with ID ${id} not found`);
     return payment;
   }
 
@@ -53,33 +54,38 @@ export class PaymentService {
         where: { rentalId: createPaymentDto.rentalId },
       });
 
-      const totalPaid = existingPayments.reduce((sum, payment) => sum + payment.amount, 0);
+      const totalPaid = existingPayments.reduce(
+        (sum, payment) => sum + payment.amount,
+        0,
+      );
       const remainingAmount = rental.totalAmount - totalPaid;
 
       if (createPaymentDto.amount > remainingAmount) {
         throw new BadRequestException(
-          `Payment amount (${createPaymentDto.amount}) exceeds remaining amount (${remainingAmount})`
+          `Payment amount (${createPaymentDto.amount}) exceeds remaining amount (${remainingAmount})`,
         );
       }
 
       const newPayment = this.paymentRepository.create({
         ...createPaymentDto,
-        paymentDate: createPaymentDto.paymentDate ? new Date(createPaymentDto.paymentDate) : new Date(),
+        paymentDate: createPaymentDto.paymentDate
+          ? new Date(createPaymentDto.paymentDate)
+          : new Date(),
       });
 
       return await this.paymentRepository.save(newPayment);
     } catch (error) {
       if (error instanceof HttpException) throw error;
 
-      throw new HttpException(
-        'Error creating payment: ' + error.message,
-        500,
-      );
+      throw new HttpException('Error creating payment: ' + error.message, 500);
     }
   }
 
   // ✅ Update payment
-  async update(id: number, updatePaymentDto: UpdatePaymentDto): Promise<Payment> {
+  async update(
+    id: number,
+    updatePaymentDto: UpdatePaymentDto,
+  ): Promise<Payment> {
     const payment = await this.findOne(id);
     Object.assign(payment, updatePaymentDto);
     return this.paymentRepository.save(payment);

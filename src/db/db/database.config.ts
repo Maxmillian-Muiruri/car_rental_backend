@@ -9,6 +9,7 @@ export const databaseConfig = registerAs('database', () => ({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   schema: process.env.DB_SCHEMA || 'dbo',
+  autoLoadEntities: true,
   entities: [__dirname + '/../../src/**/*.entity{.ts,.js}'],
   synchronize: process.env.DB_SYNC === 'false',
   logging: process.env.DB_LOGGING === 'true',

@@ -1,4 +1,12 @@
-import { IsInt, IsString, IsNumber, IsOptional, IsDateString, Length, Min } from 'class-validator';
+import {
+  IsInt,
+  IsString,
+  IsNumber,
+  IsOptional,
+  IsDateString,
+  Length,
+  Min,
+} from 'class-validator';
 
 export class CreateMaintenanceDto {
   @IsInt()

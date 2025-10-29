@@ -1,4 +1,13 @@
-import { IsInt, IsNumber, IsString, IsOptional, IsDateString, Min, Length, IsIn } from 'class-validator';
+import {
+  IsInt,
+  IsNumber,
+  IsString,
+  IsOptional,
+  IsDateString,
+  Min,
+  Length,
+  IsIn,
+} from 'class-validator';
 
 export class CreatePaymentDto {
   @IsInt()

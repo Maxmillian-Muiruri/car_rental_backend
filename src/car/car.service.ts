@@ -49,10 +49,7 @@ export class CarService {
     } catch (error) {
       if (error instanceof HttpException) throw error;
 
-      throw new HttpException(
-        'Error creating car: ' + error.message,
-        500,
-      );
+      throw new HttpException('Error creating car: ' + error.message, 500);
     }
   }
 

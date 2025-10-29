@@ -24,8 +24,11 @@ export class LocationService {
 
   // ✅ Get one location by ID
   async findOne(id: number): Promise<Location> {
-    const location = await this.locationRepository.findOneBy({ locationId: id });
-    if (!location) throw new NotFoundException(`Location with ID ${id} not found`);
+    const location = await this.locationRepository.findOneBy({
+      locationId: id,
+    });
+    if (!location)
+      throw new NotFoundException(`Location with ID ${id} not found`);
     return location;
   }
 
@@ -46,15 +49,15 @@ export class LocationService {
     } catch (error) {
       if (error instanceof HttpException) throw error;
 
-      throw new HttpException(
-        'Error creating location: ' + error.message,
-        500,
-      );
+      throw new HttpException('Error creating location: ' + error.message, 500);
     }
   }
 
   // ✅ Update location
-  async update(id: number, updateLocationDto: UpdateLocationDto): Promise<Location> {
+  async update(
+    id: number,
+    updateLocationDto: UpdateLocationDto,
+  ): Promise<Location> {
     const location = await this.findOne(id);
     Object.assign(location, updateLocationDto);
     return this.locationRepository.save(location);
@@ -64,6 +67,8 @@ export class LocationService {
   async remove(id: number): Promise<{ message: string }> {
     const location = await this.findOne(id);
     await this.locationRepository.delete(id);
-    return { message: `Location '${location.locationName}' deleted successfully` };
+    return {
+      message: `Location '${location.locationName}' deleted successfully`,
+    };
   }
 }

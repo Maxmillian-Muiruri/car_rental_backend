@@ -7,27 +7,27 @@ import {
 } from 'typeorm';
 import { Car } from '../../car/entities/car.entity';
 
-@Entity()
+@Entity('insurance')
 export class Insurance {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: 'int' })
   insuranceId: number;
 
-  @Column()
+  @Column({ type: 'int', nullable: false })
   carId: number;
 
-  @OneToOne(() => Car, car => car.insurance)
+  @OneToOne(() => Car, (car) => car.insurance)
   @JoinColumn({ name: 'carId' })
   car: Car;
 
-  @Column({ length: 100 })
+  @Column({ type: 'varchar', length: 100, nullable: false })
   insuranceProvider: string;
 
-  @Column({ length: 50 })
+  @Column({ type: 'varchar', length: 50, nullable: false })
   policyNumber: string;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'date', nullable: false })
   startDate: Date;
 
-  @Column({ type: 'date' })
-  endDate: Date;
+  @Column({ type: 'date', nullable: false })
+  endDate: Date; // date
 }

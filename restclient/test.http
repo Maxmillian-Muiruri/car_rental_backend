@@ -7,265 +7,274 @@
 
 ###Create a Car
 
-POST http://localhost:3000/car
+POST http://localhost:3000/cars
 Content-Type: application/json
 
 {
-  "carModel": "Camry",
-  "manufacturer": "Toyota",
-  "year": 2023,
-  "color": "Silver",
+  "carModel": "nissans",
+  "manufacturer": "Isuzus",
+  "year": 2025,
+  "color": "black",
   "rentalRate": 50.00,
-  "availability": true
+  "availability": true,
+  "locationId": 3
 }
 
 #### Get all Cars
-#GET http://localhost:3000/car
+GET http://localhost:3000/cars
 #
-####Get Car by ID
-#GET http://localhost:3000/car/1
-#
-## Update Car
-#PATCH http://localhost:3000/car/1
-#Content-Type: application/json
-#
-#{
-#"color": "Red",
-#"availability": false
-#}
-#
-## Delete Car
+### Get Car by ID
+GET http://localhost:3000/cars/1
+
+###  Update Car
+ PATCH http://localhost:3000/cars/4
+Content-Type: application/json
+
+{
+"color": "Red",
+"availability": true,
+  "locationId": 3
+}
+
+### Delete Car
 #DELETE http://localhost:3000/car/1
 #
 ###################################
 ## CUSTOMER Endpoints
 ###################################
 #
-## Create a Customer
-#POST http://localhost:3000/customer
-#Content-Type: application/json
-#
-#{
-#  "firstName": "John",
-#  "lastName": "Doe",
-#  "email": "john.doe@example.com",
-#  "phoneNumber": "+1234567890",
-#  "address": "123 Main St, City, State"
-#}
-#
-## Get all Customers
-#GET http://localhost:3000/customer
-#
-## Get Customer by ID
-#GET http://localhost:3000/customer/1
-#
-## Update Customer
-#PATCH http://localhost:3000/customer/1
-#Content-Type: application/json
-#
-#{
-#"phoneNumber": "+0987654321"
-#}
-#
-## Delete Customer
-#DELETE http://localhost:3000/customer/1
-#
+###  Create a Customer
+POST http://localhost:3000/customer
+Content-Type: application/json
+
+{
+ "firstName": "John2",
+ "lastName": "Doe2",
+  "email": "john2.doe@example.com",
+  "phoneNumber": "+1234567890",
+  "address": "123 Main St, City, State"
+}
+
+### Get all Customers
+
+GET http://localhost:3000/customer
+
+### Get Customer by ID
+GET http://localhost:3000/customer/2
+
+### Update Customer
+PATCH http://localhost:3000/customer/2
+Content-Type: application/json
+
+{
+"phoneNumber": "+254710795876"
+}
+
+### Delete Customer
+DELETE http://localhost:3000/customer/1
+
 ###################################
 ## RENTAL Endpoints
 ###################################
-#
-## Create a Rental
-#POST http://localhost:3000/rental
-#Content-Type: application/json
-#
-#{
-#  "carId": 1,
-#  "customerId": 1,
-#  "rentalStartDate": "2024-01-15",
-#  "rentalEndDate": "2024-01-20",
-#  "totalAmount": 250.00
-#}
-#
-## Get all Rentals
-#GET http://localhost:3000/rental
-#
-## Get Rental by ID
-#GET http://localhost:3000/rental/1
-#
-## Update Rental
-#PATCH http://localhost:3000/rental/1
-#Content-Type: application/json
-#
-#{
-#"totalAmount": 300.00
-#}
-#
-## Delete Rental
-#DELETE http://localhost:3000/rental/1
-#
+
+### Create a Rental
+POST http://localhost:3000/rental
+Content-Type: application/json
+
+{
+ "carId": 1,
+  "customerId": 2,
+  "rentalStartDate": "2025-12-15",
+  "rentalEndDate": "2026-01-20",
+  "totalAmount": 250.00
+}
+
+### Get all Rentals
+GET http://localhost:3000/rental
+
+### Get Rental by ID
+GET http://localhost:3000/rental/1
+
+### Update Rental
+PATCH http://localhost:3000/rental/1
+Content-Type: application/json
+
+{
+"totalAmount": 300.00
+}
+
+### Delete Rental
+DELETE http://localhost:3000/rental/1
+
 ###################################
 ## PAYMENT Endpoints
 ###################################
-#
-## Create Payment
-#POST http://localhost:3000/payment
-#Content-Type: application/json
-#
-#{
-#  "rentalId": 1,
-#  "amount": 100.00,
-#  "paymentDate": "2024-01-16"
-#}
-#
-## Get all Payments
-#GET http://localhost:3000/payment
-#
-## Get Payment by ID
-#GET http://localhost:3000/payment/1
-#
-## Get Payments by Rental ID
-#GET http://localhost:3000/payment/rental/1
-#
-## Update Payment
-#PATCH http://localhost:3000/payment/1
-#Content-Type: application/json
-#
-#{
-#"amount": 150.00
-#}
-#
-## Delete Payment
-#DELETE http://localhost:3000/payment/1
-#
+
+### Create Payment
+POST http://localhost:3000/payment
+Content-Type: application/json
+
+{
+ "rentalId": 1,
+  "amount": 100.00,
+  "paymentDate": "2026-01-16",
+  "paymentMethod": "Credit Card"
+}
+
+### Get all Payments
+GET http://localhost:3000/payment
+
+### Get Payment by ID
+GET http://localhost:3000/payment/3
+
+### Get Payments by Rental ID
+GET http://localhost:3000/payment/rental/1
+
+### Update Payment
+PATCH http://localhost:3000/payment/3
+Content-Type: application/json
+
+{
+"amount": 150.00
+}
+
+### Delete Payment
+DELETE http://localhost:3000/payment/1
+
 ###################################
 ## INSURANCE Endpoints
 ###################################
-#
-## Create Insurance
-#POST http://localhost:3000/insurance
-#Content-Type: application/json
-#
-#{
-#  "carId": 1,
-#  "policyNumber": "POL123456",
-#  "startDate": "2024-01-01",
-#  "endDate": "2025-01-01",
-#  "provider": "Allianz"
-#}
-#
-## Get all Insurance
-#GET http://localhost:3000/insurance
-#
-## Get Insurance by ID
-#GET http://localhost:3000/insurance/1
-#
-## Get Insurance by Car ID
-#GET http://localhost:3000/insurance/car/1
-#
-## Update Insurance
-#PATCH http://localhost:3000/insurance/1
-#Content-Type: application/json
-#
-#{
-#"provider": "AXA"
-#}
-#
-## Delete Insurance
-#DELETE http://localhost:3000/insurance/1
-#
+
+### Create Insurance
+POST http://localhost:3000/insurance
+Content-Type: application/json
+
+{
+  "carId": 1,
+  "policyNumber": "POL123456",
+  "startDate": "2025-01-01",
+  "endDate": "2026-01-01",
+  "insuranceProvider": "Allianz"
+}
+
+### Get all Insurance
+GET http://localhost:3000/insurance
+
+
+###Get Insurance by ID
+GET http://localhost:3000/insurance/4
+
+### Get Insurance by Car ID
+ GET http://localhost:3000/insurance/car/1
+
+### Update Insurance
+ PATCH http://localhost:3000/insurance/4
+Content-Type: application/json
+
+{
+"provider": "AXA"
+}
+
+###Delete Insurance
+DELETE http://localhost:3000/insurance/1
+
 ###################################
 ## LOCATION Endpoints
 ###################################
 #
-## Create Location
-#POST http://localhost:3000/location
-#Content-Type: application/json
-#
-#{
-#  "name": "Downtown Branch",
-#  "address": "456 Center St, City, State"
-#}
-#
-## Get all Locations
-#GET http://localhost:3000/location
-#
-## Get Location by ID
-#GET http://localhost:3000/location/1
-#
-## Update Location
-#PATCH http://localhost:3000/location/1
-#Content-Type: application/json
-#
-#{
-#"address": "789 New St, City, State"
-#}
-#
-## Delete Location
-#DELETE http://localhost:3000/location/1
-#
+### Create Location
+POST http://localhost:3000/location
+Content-Type: application/json
+
+{
+ "locationName": "Downtown Branchs",
+  "address": "4567 Center St, City, State",
+  "contactNumber": "25"
+}
+
+### Get all Locations
+GET http://localhost:3000/location
+
+### Get Location by ID
+GET http://localhost:3000/location/2
+
+### Update Location
+PATCH http://localhost:3000/location/3
+Content-Type: application/json
+
+{
+"address": "789 New St, City, State"
+}
+
+### Delete Location
+DELETE http://localhost:3000/location/3
+
 ###################################
 ## RESERVATION Endpoints
 ###################################
-#
-## Create Reservation
-#POST http://localhost:3000/reservation
-#Content-Type: application/json
-#
-#{
-#  "carId": 1,
-#  "customerId": 1,
-#  "pickupDate": "2024-02-01",
-#  "returnDate": "2024-02-05"
-#}
-#
-## Get all Reservations
-#GET http://localhost:3000/reservation
-#
-## Get Reservation by ID
-#GET http://localhost:3000/reservation/1
-#
-## Update Reservation
-#PATCH http://localhost:3000/reservation/1
-#Content-Type: application/json
-#
-#{
-#"returnDate": "2024-02-06"
-#}
-#
-## Delete Reservation
-#DELETE http://localhost:3000/reservation/1
-#
+
+### Create Reservation
+POST http://localhost:3000/reservation
+Content-Type: application/json
+
+{
+"carId": 1,
+  "customerId": 1,
+  "pickupDate": "2025-12-01",
+  "returnDate": "2026-02-05",
+  "pickupLocationId": 2,
+  "returnLocationId": 2,
+  "status": "Pending"
+}
+
+### Get all Reservations
+GET http://localhost:3000/reservation
+
+### Get Reservation by ID
+GET http://localhost:3000/reservation/3
+
+### Update Reservation
+PATCH http://localhost:3000/reservation/3
+Content-Type: application/json
+
+{
+"returnDate": "2026-01-06"
+}
+
+### Delete Reservation
+DELETE http://localhost:3000/reservation/1
+
 ###################################
 ## MAINTENANCE Endpoints
 ###################################
-#
-## Create Maintenance Record
-#POST http://localhost:3000/maintenance
-#Content-Type: application/json
-#
-#{
-#  "carId": 1,
-#  "description": "Oil change",
-#  "maintenanceDate": "2024-03-01",
-#  "cost": 50.00
-#}
-#
-## Get all Maintenance Records
-#GET http://localhost:3000/maintenance
-#
-## Get Maintenance by ID
-#GET http://localhost:3000/maintenance/1
-#
-## Get Maintenance by Car ID
-#GET http://localhost:3000/maintenance/car/1
-#
-## Update Maintenance
-#PATCH http://localhost:3000/maintenance/1
-#Content-Type: application/json
-#
-#{
-#"cost": 55.00
-#}
-#
+
+### Create Maintenance Record
+POST http://localhost:3000/maintenance
+Content-Type: application/json
+
+{
+  "carId": 1,
+  "description": "Oil change",
+  "maintenanceDate": "2026-03-01",
+  "cost": 50.00
+}
+
+### Get all Maintenance Records
+GET http://localhost:3000/maintenance
+
+### Get Maintenance by ID
+GET http://localhost:3000/maintenance/1
+
+### Get Maintenance by Car ID
+GET http://localhost:3000/maintenance/car/1
+
+### Update Maintenance
+PATCH http://localhost:3000/maintenance/1
+Content-Type: application/json
+
+{
+"cost": 55.00
+}
+
 ####  Delete Maintenance
-#DELETE http://localhost:3000/maintenance/1
+DELETE http://localhost:3000/maintenance/1

@@ -37,12 +37,15 @@ export class ReservationService {
       where: { reservationId: id },
       relations: ['car', 'customer'],
     });
-    if (!reservation) throw new NotFoundException(`Reservation with ID ${id} not found`);
+    if (!reservation)
+      throw new NotFoundException(`Reservation with ID ${id} not found`);
     return reservation;
   }
 
   // ✅ Create new reservation
-  async create(createReservationDto: CreateReservationDto): Promise<Reservation> {
+  async create(
+    createReservationDto: CreateReservationDto,
+  ): Promise<Reservation> {
     try {
       // Validate car exists and is available
       const car = await this.carRepository.findOne({
@@ -66,7 +69,7 @@ export class ReservationService {
       // Validate dates
       const pickupDate = new Date(createReservationDto.pickupDate);
       const returnDate = new Date(createReservationDto.returnDate);
-      
+
       if (pickupDate >= returnDate) {
         throw new BadRequestException('Pickup date must be before return date');
       }
@@ -78,20 +81,26 @@ export class ReservationService {
       // Check for overlapping reservations
       const overlappingReservation = await this.reservationRepository
         .createQueryBuilder('reservation')
-        .where('reservation.carId = :carId', { carId: createReservationDto.carId })
+        .where('reservation.carId = :carId', {
+          carId: createReservationDto.carId,
+        })
         .andWhere(
           '(reservation.pickupDate <= :returnDate AND reservation.returnDate >= :pickupDate)',
-          { pickupDate, returnDate }
+          { pickupDate, returnDate },
         )
         .getOne();
 
       if (overlappingReservation) {
-        throw new ConflictException('Car is already reserved during this period');
+        throw new ConflictException(
+          'Car is already reserved during this period',
+        );
       }
 
       const newReservation = this.reservationRepository.create({
         ...createReservationDto,
-        reservationDate: createReservationDto.reservationDate ? new Date(createReservationDto.reservationDate) : new Date(),
+        reservationDate: createReservationDto.reservationDate
+          ? new Date(createReservationDto.reservationDate)
+          : new Date(),
         pickupDate,
         returnDate,
       });
@@ -108,7 +117,10 @@ export class ReservationService {
   }
 
   // ✅ Update reservation
-  async update(id: number, updateReservationDto: UpdateReservationDto): Promise<Reservation> {
+  async update(
+    id: number,
+    updateReservationDto: UpdateReservationDto,
+  ): Promise<Reservation> {
     const reservation = await this.findOne(id);
     Object.assign(reservation, updateReservationDto);
     return this.reservationRepository.save(reservation);

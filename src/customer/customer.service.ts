@@ -30,7 +30,8 @@ export class CustomerService {
       where: { customerId: id },
       relations: ['rentals', 'reservations'],
     });
-    if (!customer) throw new NotFoundException(`Customer with ID ${id} not found`);
+    if (!customer)
+      throw new NotFoundException(`Customer with ID ${id} not found`);
     return customer;
   }
 
@@ -51,15 +52,15 @@ export class CustomerService {
     } catch (error) {
       if (error instanceof HttpException) throw error;
 
-      throw new HttpException(
-        'Error creating customer: ' + error.message,
-        500,
-      );
+      throw new HttpException('Error creating customer: ' + error.message, 500);
     }
   }
 
   // ✅ Update customer
-  async update(id: number, updateCustomerDto: UpdateCustomerDto): Promise<Customer> {
+  async update(
+    id: number,
+    updateCustomerDto: UpdateCustomerDto,
+  ): Promise<Customer> {
     const customer = await this.findOne(id);
     Object.assign(customer, updateCustomerDto);
     return this.customerRepository.save(customer);
@@ -69,6 +70,8 @@ export class CustomerService {
   async remove(id: number): Promise<{ message: string }> {
     const customer = await this.findOne(id);
     await this.customerRepository.delete(id);
-    return { message: `Customer '${customer.firstName} ${customer.lastName}' deleted successfully` };
+    return {
+      message: `Customer '${customer.firstName} ${customer.lastName}' deleted successfully`,
+    };
   }
 }

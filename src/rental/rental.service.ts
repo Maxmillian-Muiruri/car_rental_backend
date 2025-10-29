@@ -66,13 +66,17 @@ export class RentalService {
       // Validate dates
       const startDate = new Date(createRentalDto.rentalStartDate);
       const endDate = new Date(createRentalDto.rentalEndDate);
-      
+
       if (startDate >= endDate) {
-        throw new BadRequestException('Rental start date must be before end date');
+        throw new BadRequestException(
+          'Rental start date must be before end date',
+        );
       }
 
       if (startDate < new Date()) {
-        throw new BadRequestException('Rental start date cannot be in the past');
+        throw new BadRequestException(
+          'Rental start date cannot be in the past',
+        );
       }
 
       // Check for overlapping rentals
@@ -81,7 +85,7 @@ export class RentalService {
         .where('rental.carId = :carId', { carId: createRentalDto.carId })
         .andWhere(
           '(rental.rentalStartDate <= :endDate AND rental.rentalEndDate >= :startDate)',
-          { startDate, endDate }
+          { startDate, endDate },
         )
         .getOne();
 
@@ -103,10 +107,7 @@ export class RentalService {
     } catch (error) {
       if (error instanceof HttpException) throw error;
 
-      throw new HttpException(
-        'Error creating rental: ' + error.message,
-        500,
-      );
+      throw new HttpException('Error creating rental: ' + error.message, 500);
     }
   }
 
@@ -120,7 +121,7 @@ export class RentalService {
   // ✅ Delete rental
   async remove(id: number): Promise<{ message: string }> {
     const rental = await this.findOne(id);
-    
+
     // Update car availability
     const car = await this.carRepository.findOne({
       where: { carId: rental.carId },

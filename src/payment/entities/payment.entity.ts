@@ -7,24 +7,24 @@ import {
 } from 'typeorm';
 import { Rental } from '../../rental/entities/rental.entity';
 
-@Entity()
+@Entity('payment')
 export class Payment {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: 'int' })
   paymentId: number;
 
-  @Column()
+  @Column({ type: 'int', nullable: false })
   rentalId: number;
 
-  @ManyToOne(() => Rental, rental => rental.payments)
+  @ManyToOne(() => Rental, (rental) => rental.payments)
   @JoinColumn({ name: 'rentalId' })
   rental: Rental;
 
-  @Column({ type: 'date', default: () => 'GETDATE()' })
+  @Column({ type: 'date', default: () => 'GETDATE()', nullable: false })
   paymentDate: Date;
 
-  @Column('decimal', { precision: 10, scale: 2 })
+  @Column({ type: 'decimal', precision: 10, scale: 2, nullable: false })
   amount: number;
 
-  @Column({ length: 50 })
+  @Column({ type: 'varchar', length: 50, nullable: false })
   paymentMethod: string;
 }

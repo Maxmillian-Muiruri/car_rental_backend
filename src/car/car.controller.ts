@@ -11,7 +11,7 @@ import { CarService } from './car.service';
 import { CreateCarDto } from './dto/create-car.dto';
 import { UpdateCarDto } from './dto/update-car.dto';
 
-@Controller('car')
+@Controller('cars')
 export class CarController {
   constructor(private readonly carService: CarService) {}
 

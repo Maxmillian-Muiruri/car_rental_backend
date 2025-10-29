@@ -1,24 +1,29 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { Car } from '../../car/entities/car.entity';
 
-@Entity()
+@Entity('maintenance')
 export class Maintenance {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: 'int' })
   maintenanceId: number;
-
-  @Column()
+  @Column({ type: 'int', nullable: false })
   carId: number;
 
-  @ManyToOne(() => Car, car => car.maintenances)
+  @ManyToOne(() => Car, (car) => car.maintenances)
   @JoinColumn({ name: 'carId' })
   car: Car;
 
-  @Column({ type: 'date', default: () => 'GETDATE()' })
+  @Column({ type: 'date', default: () => 'GETDATE()', nullable: false })
   maintenanceDate: Date;
 
-  @Column({ length: 200 })
+  @Column({ type: 'varchar', length: 200, nullable: false })
   description: string;
 
-  @Column('decimal', { precision: 10, scale: 2 })
+  @Column({ type: 'decimal', precision: 10, scale: 2, nullable: false })
   cost: number;
 }

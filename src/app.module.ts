@@ -8,6 +8,7 @@ import { ReservationModule } from './reservation/reservation.module';
 import { InsuranceModule } from './insurance/insurance.module';
 import { LocationModule } from './location/location.module';
 import { MaintenanceModule } from './maintenance/maintenance.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { MaintenanceModule } from './maintenance/maintenance.module';
     InsuranceModule,
     LocationModule,
     MaintenanceModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
