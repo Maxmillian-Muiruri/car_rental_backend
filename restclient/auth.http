@@ -2,12 +2,12 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-  "email": "john@example.com",
+  "email": "maxmillian@gmail.com",
   "password": "password123",
-  "firstName": "John",
-  "lastName": "Doe",
+  "firstName": "max",
+  "lastName": "millin",
   "phoneNumber": "+254712345678",
-  "address": "123 Main St, Nairobi"
+  "address": "123 chuka  St, Nairobi"
 }
 
 ### sign in
@@ -15,6 +15,6 @@ POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
-"email": "john@example.com",
+"email": "maxmillian@gmail.com",
 "password": "password123"
 }
