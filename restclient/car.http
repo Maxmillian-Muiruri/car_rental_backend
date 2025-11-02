@@ -1,0 +1,33 @@
+POST http://localhost:3000/cars
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibWF4bWlsbGlhbkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjE5MTQ5NjgsImV4cCI6MTc2MTkyMjE2OH0.t8MJiLLBvZe7KC3Drt5eTBYOkERhu4WG0uiLHes98hs
+Content-Type: application/json
+
+{
+  "carModel": "audiRS75",
+  "manufacturer": "isuzuuu",
+  "year": 2024,
+  "color": "black",
+  "rentalRate": 50.00,
+  "availability": true
+}
+
+### update car
+PATCH http://localhost:3000/cars/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibWF4bWlsbGlhbkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjE4OTYyMjYsImV4cCI6MTc2MTkwMzQyNn0.ooDQqgZ7-Jrl7Igdn9tOrjTeX5FxU1DBeA5D0vusPOw
+Content-Type: application/json
+
+{
+"rentalRate": 60.00
+}
+
+### delete car
+DELETE http://localhost:3000/cars/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibWF4bWlsbGlhbkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjE4OTYyMjYsImV4cCI6MTc2MTkwMzQyNn0.ooDQqgZ7-Jrl7Igdn9tOrjTeX5FxU1DBeA5D0vusPOw
+
+### get all cars
+GET http://localhost:3000/cars
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibWF4bWlsbGlhbkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjE4OTYyMjYsImV4cCI6MTc2MTkwMzQyNn0.ooDQqgZ7-Jrl7Igdn9tOrjTeX5FxU1DBeA5D0vusPOw
+
+### get customer
+GET http://localhost:3000/customer
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImVtYWlsIjoibWF4bWlsbGlhbkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjE4OTYyMjYsImV4cCI6MTc2MTkwMzQyNn0.ooDQqgZ7-Jrl7Igdn9tOrjTeX5FxU1DBeA5D0vusPOw

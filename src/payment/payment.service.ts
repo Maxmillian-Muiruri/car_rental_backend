@@ -105,4 +105,13 @@ export class PaymentService {
       relations: ['rental'],
     });
   }
+
+  // ✅ Get payments by customer ID
+  async findByCustomerId(customerId: number): Promise<Payment[]> {
+    return this.paymentRepository.find({
+      where: { rental: { customer: { customerId } } }, // nested relation
+      relations: ['rental', 'rental.customer'],
+    });
+  }
+
 }

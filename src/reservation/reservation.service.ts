@@ -42,6 +42,13 @@ export class ReservationService {
     return reservation;
   }
 
+  // find customer by id
+  async findByCustomerId(customerId: number): Promise<Reservation[]> {
+    return this.reservationRepository.find({
+      where: { customer: { customerId } }, // Nested object for relations
+      relations: ['car', 'customer'],
+    });
+  }
   // ✅ Create new reservation
   async create(
     createReservationDto: CreateReservationDto,

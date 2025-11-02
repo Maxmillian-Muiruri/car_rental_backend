@@ -30,6 +30,21 @@ export class RentalService {
       relations: ['car', 'customer', 'payments'],
     });
   }
+  // ✅ Get rentals by customer ID (for "my rentals" route)
+  async findByCustomerId(customerId: number): Promise<Rental[]> {
+    const rentals = await this.rentalRepository.find({
+      where: { customer: { customerId } },
+      relations: ['car', 'customer', 'payments'],
+    });
+
+    if (!rentals || rentals.length === 0) {
+      throw new NotFoundException(
+        `No rentals found for customer ID ${customerId}`,
+      );
+    }
+
+    return rentals;
+  }
 
   // ✅ Get one rental by ID
   async findOne(id: number): Promise<Rental> {

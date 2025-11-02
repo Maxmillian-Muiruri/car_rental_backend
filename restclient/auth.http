@@ -18,3 +18,30 @@ Content-Type: application/json
 "email": "maxmillian@gmail.com",
 "password": "password123"
 }
+
+
+### register
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+"email": "maxm@gmail.com",
+"password": "password123",
+"firstName": "max",
+"lastName": "millin",
+"phoneNumber": "+254712345666",
+"address": "1234 chuka  St, Nairobi"
+}
+
+
+
+
+###login
+### sign in
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+  "email": "maxm@gmail.com",
+  "password": "password123"
+}

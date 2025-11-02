@@ -1,0 +1,35 @@
+
+###################################
+## RESERVATION Endpoints
+###################################
+
+### Create Reservation
+POST http://localhost:3000/reservation
+Content-Type: application/json
+
+{
+  "carId": 1,
+  "customerId": 1,
+  "pickupDate": "2025-12-01",
+  "returnDate": "2026-02-05",
+  "pickupLocationId": 2,
+  "returnLocationId": 2,
+  "status": "Pending"
+}
+
+### Get all Reservations
+GET http://localhost:3000/reservation
+
+### Get Reservation by ID
+GET http://localhost:3000/reservation/3
+
+### Update Reservation
+PATCH http://localhost:3000/reservation/3
+Content-Type: application/json
+
+{
+  "returnDate": "2026-01-06"
+}
+
+### Delete Reservation
+DELETE http://localhost:3000/reservation/1

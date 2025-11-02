@@ -27,7 +27,7 @@ GET http://localhost:3000/cars
 GET http://localhost:3000/cars/1
 
 ###  Update Car
- PATCH http://localhost:3000/cars/4
+ PATCH http://localhost:3000/cars/2
 Content-Type: application/json
 
 {
@@ -73,73 +73,7 @@ Content-Type: application/json
 ### Delete Customer
 DELETE http://localhost:3000/customer/1
 
-###################################
-## RENTAL Endpoints
-###################################
 
-### Create a Rental
-POST http://localhost:3000/rental
-Content-Type: application/json
-
-{
- "carId": 1,
-  "customerId": 2,
-  "rentalStartDate": "2025-12-15",
-  "rentalEndDate": "2026-01-20",
-  "totalAmount": 250.00
-}
-
-### Get all Rentals
-GET http://localhost:3000/rental
-
-### Get Rental by ID
-GET http://localhost:3000/rental/1
-
-### Update Rental
-PATCH http://localhost:3000/rental/1
-Content-Type: application/json
-
-{
-"totalAmount": 300.00
-}
-
-### Delete Rental
-DELETE http://localhost:3000/rental/1
-
-###################################
-## PAYMENT Endpoints
-###################################
-
-### Create Payment
-POST http://localhost:3000/payment
-Content-Type: application/json
-
-{
- "rentalId": 1,
-  "amount": 100.00,
-  "paymentDate": "2026-01-16",
-  "paymentMethod": "Credit Card"
-}
-
-### Get all Payments
-GET http://localhost:3000/payment
-
-### Get Payment by ID
-GET http://localhost:3000/payment/3
-
-### Get Payments by Rental ID
-GET http://localhost:3000/payment/rental/1
-
-### Update Payment
-PATCH http://localhost:3000/payment/3
-Content-Type: application/json
-
-{
-"amount": 150.00
-}
-
-### Delete Payment
-DELETE http://localhost:3000/payment/1
 
 ###################################
 ## INSURANCE Endpoints
@@ -209,40 +143,6 @@ Content-Type: application/json
 ### Delete Location
 DELETE http://localhost:3000/location/3
 
-###################################
-## RESERVATION Endpoints
-###################################
-
-### Create Reservation
-POST http://localhost:3000/reservation
-Content-Type: application/json
-
-{
-"carId": 1,
-  "customerId": 1,
-  "pickupDate": "2025-12-01",
-  "returnDate": "2026-02-05",
-  "pickupLocationId": 2,
-  "returnLocationId": 2,
-  "status": "Pending"
-}
-
-### Get all Reservations
-GET http://localhost:3000/reservation
-
-### Get Reservation by ID
-GET http://localhost:3000/reservation/3
-
-### Update Reservation
-PATCH http://localhost:3000/reservation/3
-Content-Type: application/json
-
-{
-"returnDate": "2026-01-06"
-}
-
-### Delete Reservation
-DELETE http://localhost:3000/reservation/1
 
 ###################################
 ## MAINTENANCE Endpoints
